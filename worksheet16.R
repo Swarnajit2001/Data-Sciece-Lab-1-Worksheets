@@ -179,4 +179,25 @@ benchmark({
 replications = 25)
 
 
+#Q6
+
+mat = function(n,m){
+  mt = matrix(runif(n*m), nrow = n)
+  return(mt)
+}
+n = sample.int(10,100, replace = T)
+m = sample.int(10,100, replace = T)
+
+
+elap = matrix(0, nrow = 100, ncol = 2)
+i = 1
+for(i in 1 : 100){
+  elap[i, ] = benchmark(colMeans(mat(n[i], m[i])),
+            apply(mat(n[i], m[i]), 2, mean),
+            replications = 100) $ elapsed
+}
+elap
+
+apply(elap, 2, sd)
+
 
