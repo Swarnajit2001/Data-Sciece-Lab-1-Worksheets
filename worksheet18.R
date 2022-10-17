@@ -93,7 +93,18 @@ benchmark(func(1 : 1e4), func2(1 : 1e4), funcC(1 : 1e4))
 
 cppFunction(
   'NumericMatrix addM(NumericMatrix A, NumericMatrix B){
-  
-  Numeric Matrix M[]
+  int m = A.nrow();
+  int n = A.ncol();
+  NumericMatrix M(m,n);
+  for(int i = 0; i<m; i++){
+  for(int j = 0; j<n; j++){
+  M(i,j) = A(i,j) + B(i,j);
+  }
+  }
+  return M;
   }'
 )
+
+
+addM(matrix(1:4, nrow = 2),
+     matrix(2 : 5, nrow = 2))
